@@ -38,9 +38,10 @@ export default {
       };
       axios.get("https://slack.com/api/oauth.v2.access", { params }).then(
         (response) => {
-          if (!response.incoming_webhook?.url) this.slackErrorHandler();
+          console.log(response);
+          if (!response.data.incoming_webhook?.url) this.slackErrorHandler();
 
-          this.screenMessage = `Sucesso! Sua URL para webHook é ${response.incoming_webhook.url}`;
+          this.screenMessage = `Sucesso! Sua URL para webHook é ${response.data.incoming_webhook.url}`;
         },
         (error) => {
           this.slackErrorHandler();
