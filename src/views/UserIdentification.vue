@@ -30,13 +30,13 @@ export default {
 
   methods: {
     async saveUserWebHook() {
-      const parameters = {
+      const params = {
         code: this.$route.query.code,
         client_id: process.env.VUE_APP_CLIENT_ID,
         client_secret: process.env.VUE_APP_CLIENT_SECRET,
         redirect_uri: process.env.VUE_APP_REDIRECT_URI,
       };
-      axios.get("https://slack.com/api/oauth.v2.access", parameters).then(
+      axios.get("https://slack.com/api/oauth.v2.access", { params }).then(
         (response) => {
           if (!response.incoming_webhook?.url) this.slackErrorHandler();
 
